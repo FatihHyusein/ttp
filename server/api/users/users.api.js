@@ -1,11 +1,18 @@
 const db = require('../../db');
+const ObjectId = require('mongodb').ObjectID;
+
+async function getAllUsers() {
+    return await db.getDB().collection('users').find().project({ password: 0, }).toArray();
+}
 
 module.exports = {
     getAll: async (req, res, next) => {
-        const allUsers = await db.getDB().collection('users').find().project({ password: 0, }).toArray();
+        if (req.auth.user.role !== 'admin') {
+            return next({ statusCode: 403, message: `You don't have permissions to list users!` });
+        }
 
         res.locals = {
-            data: allUsers,
+            data: await getAllUsers(),
             toastMessages: [],
             confirmMessage: '',
         };
@@ -15,7 +22,7 @@ module.exports = {
 
     create: async (req, res, next) => {
         res.locals = {
-            data: {},
+            data: await getAllUsers(),
             toastMessages: [],
             confirmMessage: '',
         };
@@ -24,8 +31,12 @@ module.exports = {
     },
 
     update: async (req, res, next) => {
+        if (req.auth.user.role !== 'admin') {
+            return next({ statusCode: 403, message: `You don't have permissions to update users!` });
+        }
+
         res.locals = {
-            data: {},
+            data: await getAllUsers(),
             toastMessages: [],
             confirmMessage: '',
         };
@@ -34,8 +45,16 @@ module.exports = {
     },
 
     remove: async (req, res, next) => {
+        if (req.auth.user.role !== 'admin') {
+            return next({ statusCode: 403, message: `You don't have permissions to delete users!` });
+        }
+
+        const { userId } = req.params;
+
+        await db.getDB().collection('users').deleteOne({ '_id': new ObjectId(userId) });
+
         res.locals = {
-            data: {},
+            data: await getAllUsers(),
             toastMessages: [],
             confirmMessage: '',
         };

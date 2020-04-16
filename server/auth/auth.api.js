@@ -22,7 +22,7 @@ api.post('/login', async (req, res, next) => {
             res.token = getJwtSign({
                     _id: existingUser._id.toString(),
                     username,
-                    role: 'client'
+                    role: existingUser.role
                 }
             );
 
