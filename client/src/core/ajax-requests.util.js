@@ -46,7 +46,17 @@ export const ajax = {
             mode: 'cors',
         })
             .then(checkIfSuccess).then(handleSuccess).catch(handleFailure);
-    }
+    },
+    delete: ({ url }) => {
+        return fetch(getFullUrl(url), {
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: getHeaders(),
+            method: 'DELETE',
+            mode: 'cors',
+        })
+            .then(checkIfSuccess).then(handleSuccess).catch(handleFailure);
+    },
 };
 
 
