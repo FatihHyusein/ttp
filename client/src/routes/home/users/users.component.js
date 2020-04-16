@@ -49,8 +49,7 @@ export function UsersComponent() {
                                 <Avatar
                                     style={{ backgroundColor: userTypeColor[user.role] }}>{user.username[0].toUpperCase()}</Avatar>
                             }
-                            title={<a href='https://ant.design'>{user.username}</a>}
-                            description='Ant Design, a design language for background applications, is refined by Ant UED Team'
+                            title={user.username}
                         />
                         <div>{user.role}</div>
                     </Skeleton>
