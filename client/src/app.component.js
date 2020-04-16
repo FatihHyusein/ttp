@@ -11,9 +11,9 @@ import { ajax } from './core/ajax-requests.util';
 
 export function AppComponent() {
     const [authToken, setAuthToken] = React.useState(localStorage.token);
-    const [myProfile, setMyProfile] = React.useState();
-    const [users, setUsers] = React.useState(localStorage.token);
-    const [rentals, setRentals] = React.useState(localStorage.token);
+    const [myProfile, setMyProfile] = React.useState({});
+    const [users, setUsers] = React.useState([]);
+    const [rentals, setRentals] = React.useState([]);
     ajax.setUpdateTokenFunction(setAuthToken);
 
     React.useEffect(() => {

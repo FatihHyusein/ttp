@@ -57,10 +57,12 @@ export function HomeComponent() {
                 </Menu>
             </Header>
             <Content>
-                <Switch>
-                    <Route exact path={match.path} component={RentalsComponent}/>
-                    <Route exactpath={`${match.path}/users`} component={UsersComponent}/>
-                </Switch>
+                <div className='site-layout-content'>
+                    <Switch>
+                        <Route exact path={match.path} component={RentalsComponent}/>
+                        <Route exactpath={`${match.path}/users`} component={UsersComponent}/>
+                    </Switch>
+                </div>
             </Content>
             <Footer>Footer</Footer>
         </Layout>
