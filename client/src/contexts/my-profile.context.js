@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const MyProfileContext = React.createContext({
-    myProfile: undefined,
+    myProfile: {},
     setMyProfile: () => {
     },
 });

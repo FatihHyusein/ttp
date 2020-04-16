@@ -2,8 +2,10 @@ const db = require('../../db');
 
 module.exports = {
     getAll: async (req, res, next) => {
+        const allUsers = await db.getDB().collection('users').find().project({ password: 0, }).toArray();
+
         res.locals = {
-            data: {},
+            data: allUsers,
             toastMessages: [],
             confirmMessage: '',
         };
