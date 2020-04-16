@@ -8,13 +8,15 @@ import HomeOutlined from '@ant-design/icons/lib/icons/HomeOutlined';
 import TeamOutlined from '@ant-design/icons/lib/icons/TeamOutlined';
 import SettingOutlined from '@ant-design/icons/lib/icons/SettingOutlined';
 import { ajax } from '../../core/ajax-requests.util';
-import { AuthContext } from '../../auth.context';
+import { AuthContext } from '../../contexts/auth.context';
+import { MyProfileContext } from '../../contexts/my-profile.context';
 
 const { Header, Footer, Content } = Layout;
 
 
 export function HomeComponent() {
     const { setAuthToken } = React.useContext(AuthContext);
+    const { myProfile } = React.useContext(MyProfileContext);
     const match = useRouteMatch();
     const location = useLocation();
     const selectedMenuItem = location.pathname.indexOf('/users') === 0 ? 'users' : 'rentals';
@@ -41,7 +43,7 @@ export function HomeComponent() {
                               User
                             </span>}>
                         <Menu.ItemGroup>
-                            <Menu.Item key='setting:1'>My Profile</Menu.Item>
+                            <Menu.Item key='my-profile'>{myProfile?.username}</Menu.Item>
                         </Menu.ItemGroup>
                         <Menu.ItemGroup>
                             <Menu.Item key='logout' onClick={() => {
