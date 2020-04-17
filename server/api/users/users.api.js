@@ -42,7 +42,7 @@ module.exports = {
     update: async (req, res, next) => {
         const { userId } = req.params;
 
-        const updateResult = await db.getDB().collection('users').update(
+        const updateResult = await db.getDB().collection('users').updateOne(
             { _id: new ObjectId(userId) },
             {
                 $set:
@@ -58,13 +58,17 @@ module.exports = {
             }
         );
 
-        res.locals = {
-            data: await getAllUsers(),
-            toastMessages: [],
-            confirmMessage: '',
-        };
+        if (updateResult.result.ok) {
+            res.locals = {
+                data: await getAllUsers(),
+                toastMessages: [],
+                confirmMessage: '',
+            };
 
-        next();
+            return next();
+        }
+
+        next({ statusCode: 400, message: `Could not update user!` });
     },
 
     remove: async (req, res, next) => {
