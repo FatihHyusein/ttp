@@ -5,6 +5,8 @@ import { ajax } from '../../../core/ajax-requests.util';
 import { Avatar, Button, List, Popconfirm, Skeleton } from 'antd';
 import UserDeleteOutlined from '@ant-design/icons/lib/icons/UserDeleteOutlined';
 import EditOutlined from '@ant-design/icons/lib/icons/EditOutlined';
+import UserAddOutlined from '@ant-design/icons/lib/icons/UserAddOutlined';
+import { UserModalComponent } from './user-modal/user-modal.component';
 
 const userTypeColor = {
     client: '#87d068',
@@ -13,6 +15,8 @@ const userTypeColor = {
 };
 
 export function UsersComponent() {
+    const [userModalVisible, setUserModalVisible] = React.useState(false);
+    const [currentUser, setCurrentUser] = React.useState({});
     const { users, setUsers } = React.useContext(UsersContext);
 
     React.useEffect(() => {
@@ -24,11 +28,21 @@ export function UsersComponent() {
     return <div>
         <List
             itemLayout='horizontal'
+            header={<div>User List <Button type={'primary'} icon={<UserAddOutlined/>}
+                                           onClick={() => {
+                                               setCurrentUser({});
+                                               setUserModalVisible(true);
+                                           }
+                                           }/></div>}
             dataSource={users}
             renderItem={user => (
                 <List.Item
                     actions={[
-                        <Button shape={'round'} type={'primary'} ghost icon={<EditOutlined/>}/>,
+                        <Button shape={'round'} type={'primary'} ghost icon={<EditOutlined/>}
+                                onClick={() => {
+                                    setCurrentUser(user);
+                                    setUserModalVisible(true);
+                                }}/>,
                         <Popconfirm
                             title='Sure to delete this user?'
                             onConfirm={() => {
@@ -55,6 +69,10 @@ export function UsersComponent() {
                     </Skeleton>
                 </List.Item>
             )}
+        />
+        <UserModalComponent visible={userModalVisible}
+                            closeModal={() => setUserModalVisible(false)}
+                            currentUser={currentUser}
         />
     </div>;
 }

@@ -6,7 +6,7 @@ const api = express.Router();
 
 api.get('/', getAll);
 api.post('/', create);
-api.put('/', update);
+api.put('/:userId', update);
 api.delete('/:userId', remove);
 
 module.exports = api;
