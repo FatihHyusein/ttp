@@ -4,7 +4,7 @@ import { RentalsContext } from '../../../contexts/rentals.context';
 import { ajax } from '../../../core/ajax-requests.util';
 import { Avatar, Button, List, Popconfirm } from 'antd';
 import { RentalModalComponent } from './rental-modal/rental-modal.component';
-import { AppstoreOutlined, DollarOutlined, ExpandAltOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, CalendarOutlined, DollarOutlined, ExpandAltOutlined } from '@ant-design/icons';
 import EditOutlined from '@ant-design/icons/lib/icons/EditOutlined';
 import AppstoreAddOutlined from '@ant-design/icons/lib/icons/AppstoreAddOutlined';
 import DeleteOutlined from '@ant-design/icons/lib/icons/DeleteOutlined';
@@ -48,6 +48,9 @@ export function RentalsComponent() {
                 <List.Item
                     key={rental._id}
                     actions={[
+                        <IconText title={'Date Added'} icon={CalendarOutlined}
+                                  text={new Date(rental.dateAdded).toDateString()}
+                                  key='size'/>,
                         <IconText title={'Floor Area Size'} icon={ExpandAltOutlined} text={rental.floorAreaSize}
                                   key='size'/>,
                         <IconText title={'Price per month'} icon={DollarOutlined} text={rental.pricePerMonth}
