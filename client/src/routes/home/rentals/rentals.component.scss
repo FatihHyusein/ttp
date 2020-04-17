@@ -1,0 +1,14 @@
+.rentals-component {
+  display: flex;
+  min-height: calc(100vh - 182px);
+
+  & > div {
+    width: 50%;
+
+    &:first-child {
+      margin-right: 20px;
+      max-height: calc(100vh - 182px);
+      overflow: auto;
+    }
+  }
+}

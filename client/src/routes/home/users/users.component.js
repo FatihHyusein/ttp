@@ -23,7 +23,7 @@ export function UsersComponent() {
         ajax.get({ url: 'users' }).then(responseJson => {
             setUsers(responseJson);
         });
-    }, []);
+    }, [setUsers]);
 
     return <div>
         <List
