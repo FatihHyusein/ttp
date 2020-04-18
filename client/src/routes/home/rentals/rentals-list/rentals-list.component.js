@@ -17,7 +17,7 @@ const IconText = ({ icon, text, title }) => (
   </span>
 );
 
-export function RentalsListComponent() {
+export function RentalsListComponent({ googleMapInstances }) {
     const [rentalModalVisible, setRentalModalVisible] = React.useState(false);
     const [currentRental, setCurrentRental] = React.useState({});
     const { rentals, setRentals } = React.useContext(RentalsContext);
@@ -87,6 +87,7 @@ export function RentalsListComponent() {
             )}
         />
         <RentalModalComponent visible={rentalModalVisible}
+                              googleMapInstances={googleMapInstances}
                               closeModal={() => setRentalModalVisible(false)}
                               currentRental={currentRental}
         />
