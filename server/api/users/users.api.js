@@ -3,7 +3,7 @@ const ObjectId = require('mongodb').ObjectID;
 const { encript } = require('../../auth/pass-encription.util');
 
 async function getAllUsers() {
-    return await db.getDB().collection('users').find().project({ password: 0, }).toArray();
+    return await db.getDB().collection('users').find({ role: { $ne: 'admin' } }).project({ password: 0, }).toArray();
 }
 
 module.exports = {
