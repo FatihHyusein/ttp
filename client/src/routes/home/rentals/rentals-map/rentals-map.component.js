@@ -4,9 +4,8 @@ import { RentalsContext } from '../../../../contexts/rentals.context';
 import GoogleMapReact from 'google-map-react';
 import { RentalMapMarkerComponent } from './rental-map-marker/rental-map-marker.component';
 
-export function RentalsMapComponent() {
+export function RentalsMapComponent({ googleMapInstances, setGoogleMapInstances }) {
     const { rentals } = React.useContext(RentalsContext);
-    const [googleMapInstances, setGoogleMapInstances] = React.useState(null);
 
     React.useEffect(() => {
         if (googleMapInstances) {
@@ -16,11 +15,7 @@ export function RentalsMapComponent() {
 
             const bounds = new googleMapInstances.maps.LatLngBounds();
             rentals.forEach(rental => {
-                const [lat, lng] = rental.coordinates.split(',').map(x => +x);
-                bounds.extend({
-                    lng,
-                    lat
-                });
+                bounds.extend(rental.coordinates);
             });
 
             googleMapInstances.map.fitBounds(bounds, {
@@ -50,12 +45,10 @@ export function RentalsMapComponent() {
             }}
         >
             {rentals.map(rental => {
-                const [lat, lng] = rental.coordinates.split(',').map(x => +x);
-
                 return <RentalMapMarkerComponent
                     key={rental._id}
-                    lat={lat}
-                    lng={lng}
+                    lat={rental.coordinates.lat}
+                    lng={rental.coordinates.lng}
                     text='My Marker'
                 />;
             })}

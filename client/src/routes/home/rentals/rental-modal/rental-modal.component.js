@@ -3,13 +3,15 @@ import './rental-modal.component.scss';
 import { RentalsContext } from '../../../../contexts/rentals.context';
 import { ajax } from '../../../../core/ajax-requests.util';
 import { Button, Form, Input, InputNumber, message, Modal } from 'antd';
+import { CoordinatesFormInputComponent } from './coordinates-form-input/coordinates-form-input.component';
 
 const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
 };
 
-export function RentalModalComponent({ visible, closeModal, currentRental }) {
+export function RentalModalComponent({ visible, closeModal, currentRental, googleMapInstances }) {
+    const [form] = Form.useForm();
     const { setRentals } = React.useContext(RentalsContext);
 
     return <Modal
@@ -26,6 +28,7 @@ export function RentalModalComponent({ visible, closeModal, currentRental }) {
         ]}
     >
         <Form
+            form={form}
             id={'rental-form'}
             initialValues={currentRental}
             onFinish={(values) => {
@@ -96,13 +99,8 @@ export function RentalModalComponent({ visible, closeModal, currentRental }) {
             >
                 <InputNumber min={1} max={99}/>
             </Form.Item>
-            <Form.Item
-                label='Coordinates'
-                name='coordinates'
-                rules={[{ required: true, message: 'Please input Coordinates!' }]}
-            >
-                <Input/>
-            </Form.Item>
+            <CoordinatesFormInputComponent googleMapInstances={googleMapInstances} form={form}/>
+
             <Form.Item
                 label='associatedRealtorId'
                 name='associatedRealtorId'
