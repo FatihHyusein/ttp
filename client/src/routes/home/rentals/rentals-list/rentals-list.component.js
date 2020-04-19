@@ -25,7 +25,7 @@ export function RentalsListComponent({ googleMapInstances }) {
     return <React.Fragment>
         <List
             itemLayout='vertical'
-            header={<div>Rentals <Button type={'primary'} icon={<AppstoreAddOutlined/>}
+            header={<div className={'rentals-header'}><h1>Rentals</h1> <Button type={'primary'} icon={<AppstoreAddOutlined/>}
                                          onClick={() => {
                                              setCurrentRental({});
                                              setRentalModalVisible(true);

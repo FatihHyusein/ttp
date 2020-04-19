@@ -28,7 +28,7 @@ export function UsersComponent() {
     return <div>
         <List
             itemLayout='horizontal'
-            header={<div>User List <Button type={'primary'} icon={<UserAddOutlined/>}
+            header={<div className={'users-header'}><h1>User List</h1> <Button type={'primary'} icon={<UserAddOutlined/>}
                                            onClick={() => {
                                                setCurrentUser({});
                                                setUserModalVisible(true);
