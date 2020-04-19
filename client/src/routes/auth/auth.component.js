@@ -1,16 +1,18 @@
 import React from 'react';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import './auth.component.scss';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { Tabs } from 'antd';
 
 export function AuthComponent() {
-    const match = useRouteMatch();
-
-    return <div>
-        <Switch>
-            <Route exact path={match.path} component={LoginComponent}/>
-            <Route exact path={`${match.path}/register`} component={RegisterComponent}/>
-        </Switch>
+    return <div className={'auth-component'}>
+        <Tabs tabPosition={'bottom'} defaultActiveKey={'register'}>
+            <Tabs.TabPane tab='Login' key='1'>
+                <LoginComponent/>
+            </Tabs.TabPane>
+            <Tabs.TabPane tab='Register' key='2'>
+                <RegisterComponent/>
+            </Tabs.TabPane>
+        </Tabs>
     </div>;
 }
