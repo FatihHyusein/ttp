@@ -64,8 +64,6 @@ export function HomeComponent() {
                     </Switch>
                 </div>
             </Content>
-            <Footer>Footer</Footer>
         </Layout>
-
     </div>;
 }
