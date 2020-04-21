@@ -54,7 +54,7 @@ module.exports = {
             {
                 $set:
                     Object.entries(req.body).reduce((acc, [key, value]) => {
-                        if (value) {
+                        if (typeof value !== 'undefined') {
                             return {
                                 ...acc,
                                 [key]: value

@@ -1,6 +1,6 @@
 import React from 'react';
 import './rentals-list.component.scss';
-import { Avatar, Button, Drawer, List, Popconfirm } from 'antd';
+import { Avatar, Button, Drawer, List, message, Popconfirm, Switch } from 'antd';
 import AppstoreAddOutlined from '@ant-design/icons/lib/icons/AppstoreAddOutlined';
 import { AppstoreOutlined, CalendarOutlined, DollarOutlined, ExpandAltOutlined } from '@ant-design/icons';
 import EditOutlined from '@ant-design/icons/lib/icons/EditOutlined';
@@ -50,6 +50,21 @@ export function RentalsListComponent({ googleMapInstances, filterValues, setFilt
 
         return [
             ...actionSection,
+            <Switch checkedChildren='Av' unCheckedChildren='Re' checked={rental.isAvailable} onChange={(checked) => {
+                ajax.put({
+                    postData: {
+                        isAvailable: checked
+                    },
+                    url: `rentals/${rental._id}`
+                })
+                    .then((responseJson) => {
+                        setRentals(responseJson);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        message.error('Could not update rental!');
+                    });
+            }}/>,
             <Button shape={'round'} type={'primary'} ghost icon={<EditOutlined/>}
                     onClick={() => {
                         setCurrentRental(rental);
@@ -94,7 +109,7 @@ export function RentalsListComponent({ googleMapInstances, filterValues, setFilt
                 onChange: page => {
                     console.log(page);
                 },
-                pageSize: 3,
+                pageSize: 10,
             }}
             dataSource={rentalUtils.filterData(rentals, filterValues)}
             renderItem={rental => (
