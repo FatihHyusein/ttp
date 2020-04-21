@@ -1,15 +1,18 @@
 import React from 'react';
 import './rentals-list.component.scss';
-import { Avatar, Button, List, Popconfirm } from 'antd';
+import { Avatar, Button, Drawer, List, Popconfirm } from 'antd';
 import AppstoreAddOutlined from '@ant-design/icons/lib/icons/AppstoreAddOutlined';
 import { AppstoreOutlined, CalendarOutlined, DollarOutlined, ExpandAltOutlined } from '@ant-design/icons';
 import EditOutlined from '@ant-design/icons/lib/icons/EditOutlined';
 import { ajax } from '../../../../core/ajax-requests.util';
 import DeleteOutlined from '@ant-design/icons/lib/icons/DeleteOutlined';
-import { RentalModalComponent } from '../rental-modal/rental-modal.component';
+import { RentalModalComponent } from './rental-modal/rental-modal.component';
 import { RentalsContext } from '../../../../contexts/rentals.context';
 import { MyProfileContext } from '../../../../contexts/my-profile.context';
 import { userRoles } from '../../../../core/roles.enum';
+import { RentalsFilterComponent } from './rental-filter/rentals-filter.component';
+import FilterOutlined from '@ant-design/icons/lib/icons/FilterOutlined';
+import { rentalUtils } from '../rental.utils';
 
 
 const IconText = ({ icon, text, title }) => (
@@ -19,8 +22,9 @@ const IconText = ({ icon, text, title }) => (
   </span>
 );
 
-export function RentalsListComponent({ googleMapInstances }) {
+export function RentalsListComponent({ googleMapInstances, filterValues, setFilterValues }) {
     const [rentalModalVisible, setRentalModalVisible] = React.useState(false);
+    const [filtersVisible, setFiltersVisible] = React.useState(false);
     const [currentRental, setCurrentRental] = React.useState({});
     const { rentals, setRentals } = React.useContext(RentalsContext);
     const { myProfile } = React.useContext(MyProfileContext);
@@ -66,9 +70,12 @@ export function RentalsListComponent({ googleMapInstances }) {
     }
 
     return <React.Fragment>
+
         <List
             itemLayout='vertical'
-            header={<div className={'rentals-header'}><h1>Rentals</h1>
+            header={<div className={'rentals-header'}><h1>Rentals <Button icon={<FilterOutlined/>}
+                                                                          onClick={() => setFiltersVisible(true)}/>
+            </h1>
                 {myProfile.role === userRoles.customer ?
                     null
                     : <Button type={'primary'} icon={<AppstoreAddOutlined/>}
@@ -85,7 +92,7 @@ export function RentalsListComponent({ googleMapInstances }) {
                 },
                 pageSize: 3,
             }}
-            dataSource={rentals}
+            dataSource={rentalUtils.filterData(rentals, filterValues)}
             renderItem={rental => (
                 <List.Item
                     key={rental._id}
@@ -103,5 +110,19 @@ export function RentalsListComponent({ googleMapInstances }) {
                               closeModal={() => setRentalModalVisible(false)}
                               currentRental={currentRental}
         />
+        <Drawer
+            destroyOnClose={true}
+            title='Filter'
+            placement='left'
+            closable={true}
+            onClose={() => setFiltersVisible(false)}
+            visible={filtersVisible}
+            width={500}
+        >
+            <RentalsFilterComponent closeDrawer={() => setFiltersVisible(false)}
+                                    filterValues={filterValues}
+                                    setFilterValues={setFilterValues}
+            />
+        </Drawer>
     </React.Fragment>;
 }

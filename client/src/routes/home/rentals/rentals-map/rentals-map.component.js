@@ -3,8 +3,9 @@ import './rentals-map.component.scss';
 import { RentalsContext } from '../../../../contexts/rentals.context';
 import GoogleMapReact from 'google-map-react';
 import { RentalMapMarkerComponent } from './rental-map-marker/rental-map-marker.component';
+import { rentalUtils } from '../rental.utils';
 
-export function RentalsMapComponent({ googleMapInstances, setGoogleMapInstances }) {
+export function RentalsMapComponent({ googleMapInstances, setGoogleMapInstances, filterValues }) {
     const { rentals } = React.useContext(RentalsContext);
 
     React.useEffect(() => {
@@ -44,7 +45,7 @@ export function RentalsMapComponent({ googleMapInstances, setGoogleMapInstances 
                 });
             }}
         >
-            {rentals.map(rental => {
+            {rentalUtils.filterData(rentals, filterValues).map(rental => {
                 return <RentalMapMarkerComponent
                     key={rental._id}
                     lat={rental.coordinates.lat}
