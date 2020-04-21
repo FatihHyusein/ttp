@@ -58,7 +58,7 @@ function FormComponent({ closeModal, currentRental, googleMapInstances }) {
             name='name'
             rules={[{ required: true, message: 'Please input name!' }]}
         >
-            <Input/>
+            <Input autoFocus/>
         </Form.Item>
         <Form.Item
             label='Description'
