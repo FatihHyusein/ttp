@@ -13,9 +13,12 @@ const tailLayout = {
 };
 
 export function RegisterComponent() {
+    const [form] = Form.useForm();
+
     return <div>
         <Card title='Register' bordered={false} style={{ width: 450 }}>
             <Form
+                form={form}
                 onFinish={(values) => {
                     ajax.post({
                         url: 'auth/register',
@@ -44,12 +47,27 @@ export function RegisterComponent() {
                     name='password'
                     rules={[{ required: true, message: 'Please input your password!' }]}
                 >
-                    <Input.Password/>
+                    <Input.Password onChange={() => {
+                        if (form.getFieldValue('confirmPassword')) {
+                            form.validateFields(['confirmPassword']);
+                        }
+                    }}/>
                 </Form.Item>
                 <Form.Item
                     label='Confirm Password'
                     name='confirmPassword'
-                    rules={[{ required: true, message: 'Please input your password!' }]}
+                    rules={[
+                        { required: true, message: 'Please input your password!' },
+                        {
+                            validator: (rule, value, callback) => {
+                                if (value && form.getFieldValue('password') !== value) {
+                                    callback('Confirm Password does not match!');
+                                } else {
+                                    callback();
+                                }
+                            }
+                        }
+                    ]}
                 >
                     <Input.Password/>
                 </Form.Item>
