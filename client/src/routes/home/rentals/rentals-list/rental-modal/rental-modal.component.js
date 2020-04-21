@@ -2,8 +2,9 @@ import React from 'react';
 import './rental-modal.component.scss';
 import { RentalsContext } from '../../../../../contexts/rentals.context';
 import { ajax } from '../../../../../core/ajax-requests.util';
-import { Button, Form, Input, InputNumber, message, Modal, Switch } from 'antd';
+import { Button, Form, Input, InputNumber, message, Modal, Select, Switch } from 'antd';
 import { CoordinatesFormInputComponent } from './coordinates-form-input/coordinates-form-input.component';
+import { RealtorsContext } from '../../../../../contexts/realtors.context';
 
 const layout = {
     labelCol: { span: 8 },
@@ -13,6 +14,7 @@ const layout = {
 function FormComponent({ closeModal, currentRental, googleMapInstances }) {
     const [form] = Form.useForm();
     const { setRentals } = React.useContext(RentalsContext);
+    const { realtors } = React.useContext(RealtorsContext);
 
     return <Form
         form={form}
@@ -89,14 +91,19 @@ function FormComponent({ closeModal, currentRental, googleMapInstances }) {
         <CoordinatesFormInputComponent googleMapInstances={googleMapInstances} form={form}/>
 
         <Form.Item
-            label='associatedRealtorId'
+            label='Associated Realtor'
             name='associatedRealtorId'
             rules={[{ required: true, message: 'Please input associatedRealtorId!' }]}
         >
-            <Input/>
+            <Select>
+                {
+                    realtors.map(realtor => <Select.Option value={realtor._id}
+                                                           key={realtor._id}>{realtor.username}</Select.Option>)
+                }
+            </Select>
         </Form.Item>
         <Form.Item
-            label='isAvailable'
+            label='Is Available'
             name='isAvailable'
             valuePropName='checked'
         >

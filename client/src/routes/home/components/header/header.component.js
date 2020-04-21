@@ -40,7 +40,9 @@ export function HeaderComponent() {
             <Menu.SubMenu
                 title={<span><UserOutlined/>{myProfile?.username}</span>}>
                 <Menu.ItemGroup>
-                    <Menu.Item key='my-profile'><EditOutlined/> Edit</Menu.Item>
+                    <Menu.Item key='my-profile' onClick={() => {
+
+                    }}><EditOutlined/> Edit</Menu.Item>
                 </Menu.ItemGroup>
                 <Menu.ItemGroup>
                     <Menu.Item key='logout' onClick={() => {

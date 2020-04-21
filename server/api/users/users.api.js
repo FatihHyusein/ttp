@@ -2,14 +2,25 @@ const db = require('../../db');
 const ObjectId = require('mongodb').ObjectID;
 const { encript } = require('../../auth/pass-encription.util');
 
-async function getAllUsers() {
-    return await db.getDB().collection('users').find({ role: { $ne: 'admin' } }).project({ password: 0, }).toArray();
+async function getAllUsers(role) {
+    const queryObject = role ? { $eq: role } : { $ne: 'admin' };
+    return await db.getDB().collection('users').find({ role: queryObject }).project({ password: 0, }).toArray();
 }
 
 module.exports = {
     getAll: async (req, res, next) => {
         res.locals = {
             data: await getAllUsers(),
+            toastMessages: [],
+            confirmMessage: '',
+        };
+
+        next();
+    },
+
+    getRealtorsOnly: async (req, res, next) => {
+        res.locals = {
+            data: await getAllUsers('realtor'),
             toastMessages: [],
             confirmMessage: '',
         };

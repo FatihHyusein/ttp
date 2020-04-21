@@ -8,11 +8,13 @@ import { MyProfileContext } from './contexts/my-profile.context';
 import { UsersContext } from './contexts/users.context';
 import { RentalsContext } from './contexts/rentals.context';
 import { ajax } from './core/ajax-requests.util';
+import { RealtorsContext } from './contexts/realtors.context';
 
 export function AppComponent() {
     const [authToken, setAuthToken] = React.useState(localStorage.token);
     const [myProfile, setMyProfile] = React.useState({});
     const [users, setUsers] = React.useState([]);
+    const [realtors, setRealtors] = React.useState([]);
     const [rentals, setRentals] = React.useState([]);
     ajax.setUpdateTokenFunction(setAuthToken);
 
@@ -36,25 +38,30 @@ export function AppComponent() {
                 users,
                 setUsers
             }}>
-                <RentalsContext.Provider value={{
-                    rentals,
-                    setRentals
+                <RealtorsContext.Provider value={{
+                    realtors,
+                    setRealtors
                 }}>
-                    <Router>
-                        {authToken ?
-                            <React.Fragment>
-                                <Switch>
-                                    <Route path='/auth' render={() => (<Redirect to={`/`}/>)}/>
-                                    <Route path='/' component={HomeComponent}/>
-                                </Switch>
-                            </React.Fragment> :
-                            <React.Fragment>
-                                <Route path='/' render={() => (<Redirect to={`/auth`}/>)}/>
-                                <Route path={`/auth`} component={AuthComponent}/>
-                            </React.Fragment>
-                        }
-                    </Router>
-                </RentalsContext.Provider>
+                    <RentalsContext.Provider value={{
+                        rentals,
+                        setRentals
+                    }}>
+                        <Router>
+                            {authToken ?
+                                <React.Fragment>
+                                    <Switch>
+                                        <Route path='/auth' render={() => (<Redirect to={`/`}/>)}/>
+                                        <Route path='/' component={HomeComponent}/>
+                                    </Switch>
+                                </React.Fragment> :
+                                <React.Fragment>
+                                    <Route path='/' render={() => (<Redirect to={`/auth`}/>)}/>
+                                    <Route path={`/auth`} component={AuthComponent}/>
+                                </React.Fragment>
+                            }
+                        </Router>
+                    </RentalsContext.Provider>
+                </RealtorsContext.Provider>
             </UsersContext.Provider>
         </MyProfileContext.Provider>
     </AuthContext.Provider>;

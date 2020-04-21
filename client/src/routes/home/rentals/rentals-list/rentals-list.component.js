@@ -13,6 +13,7 @@ import { userRoles } from '../../../../core/roles.enum';
 import { RentalsFilterComponent } from './rental-filter/rentals-filter.component';
 import FilterOutlined from '@ant-design/icons/lib/icons/FilterOutlined';
 import { rentalUtils } from '../rental.utils';
+import { RentalRealtorSpanComponent } from '../../components/rental-realtor-span/rental-realtor-span.component';
 
 
 export function RentalsListComponent({ googleMapInstances, filterValues, setFilterValues }) {
@@ -101,7 +102,12 @@ export function RentalsListComponent({ googleMapInstances, filterValues, setFilt
                     actions={getRentalActionSection(rental)}>
                     <List.Item.Meta
                         avatar={<Avatar>{rental.name[0].toUpperCase()}</Avatar>}
-                        title={rental.name}
+                        title={<div className={'rental-list-item-title'}>
+                            <div>
+                                {rental.name}
+                            </div>
+                            <RentalRealtorSpanComponent realtorId={rental.associatedRealtorId}/>
+                        </div>}
                         description={rental.description}
                     />
                 </List.Item>
