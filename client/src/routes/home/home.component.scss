@@ -1,4 +1,8 @@
 .site-layout-content {
   padding: 24px 50px;
   min-height: 280px;
+
+  @media screen and (max-width: 450px) {
+    padding: 12px 30px;
+  }
 }
