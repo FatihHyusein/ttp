@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Redirect, useRouteMatch } from 'react-router-dom';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import './home.component.scss';
 import { UsersComponent } from './users/users.component';
 import { RentalsComponent } from './rentals/rentals.component';
@@ -24,10 +24,10 @@ export function HomeComponent() {
                         <Route exact path={match.path} component={RentalsComponent}/>
                         {
                             myProfile.role === userRoles.admin ?
-                                <Route exactpath={`${match.path}/users`} component={UsersComponent}/>
+                                <Route exact path={`/users`} component={UsersComponent}/>
                                 : null
                         }
-                        <Route path='*' render={() => (<Redirect to={`/`}/>)}/>
+                        <Route path='/' render={() => (<h1>Page not found!</h1>)}/>
                     </Switch>
                 </div>
             </Content>
