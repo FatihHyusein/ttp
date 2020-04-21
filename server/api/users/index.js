@@ -1,12 +1,20 @@
 const express = require('express');
-const { getAll, create, update, remove } = require('./users.api');
+const { getAll, create, update, remove, getRealtorsOnly } = require('./users.api');
 
 const api = express.Router();
 
+async function preventNonAdminHit(req, res, next) {
+    if (req.auth.user.role !== 'admin') {
+        return next({ statusCode: 403, message: `You don't have permissions!` });
+    }
 
-api.get('/', getAll);
-api.post('/', create);
-api.put('/:userId', update);
-api.delete('/:userId', remove);
+    next();
+}
+
+api.get('/', preventNonAdminHit, getAll);
+api.get('/realtor', getRealtorsOnly);
+api.post('/', preventNonAdminHit, create);
+api.put('/:userId', preventNonAdminHit, update);
+api.delete('/:userId', preventNonAdminHit, remove);
 
 module.exports = api;
