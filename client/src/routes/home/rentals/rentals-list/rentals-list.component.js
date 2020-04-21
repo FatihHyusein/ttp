@@ -15,13 +15,6 @@ import FilterOutlined from '@ant-design/icons/lib/icons/FilterOutlined';
 import { rentalUtils } from '../rental.utils';
 
 
-const IconText = ({ icon, text, title }) => (
-    <span title={title}>
-    {React.createElement(icon, { style: { marginRight: 8 } })}
-        {text}
-  </span>
-);
-
 export function RentalsListComponent({ googleMapInstances, filterValues, setFilterValues }) {
     const [rentalModalVisible, setRentalModalVisible] = React.useState(false);
     const [filtersVisible, setFiltersVisible] = React.useState(false);
@@ -32,17 +25,7 @@ export function RentalsListComponent({ googleMapInstances, filterValues, setFilt
     const { myProfile } = React.useContext(MyProfileContext);
 
     function getRentalActionSection(rental) {
-        const actionSection = [
-            <IconText title={'Date Added'} icon={CalendarOutlined}
-                      text={new Date(rental.dateAdded).toDateString()}
-                      key='size'/>,
-            <IconText title={'Floor Area Size'} icon={ExpandAltOutlined} text={rental.floorAreaSize}
-                      key='size'/>,
-            <IconText title={'Price per month'} icon={DollarOutlined} text={rental.pricePerMonth}
-                      key='price-per-month'/>,
-            <IconText title={'Number of rooms'} icon={AppstoreOutlined} text={rental.roomsCount}
-                      key='rooms'/>
-        ];
+        const actionSection = rentalUtils.getDefaultActionSection(rental);
 
         if (myProfile.role === userRoles.customer) {
             return actionSection;

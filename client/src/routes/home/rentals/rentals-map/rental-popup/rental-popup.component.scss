@@ -1,0 +1,38 @@
+.rental-popup-component {
+  $popupBgColor: rgba(black, 0.7);
+  position: relative;
+  margin-top: 45px;
+  margin-left: -158px;
+  width: 350px;
+  background: $popupBgColor;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 3px;
+
+  .name {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .rental-props {
+    margin-top: 15px;
+
+    & > span {
+      margin-right: 10px;
+    }
+  }
+
+  .arrow-up {
+    position: absolute;
+    margin: auto;
+    top: -10px;
+    left: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+
+    border-bottom: 10px solid $popupBgColor;
+  }
+}
