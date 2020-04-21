@@ -72,6 +72,7 @@ export function RentalsListComponent({ googleMapInstances, filterValues, setFilt
     return <React.Fragment>
 
         <List
+            className={'rentals-list'}
             itemLayout='vertical'
             header={<div className={'rentals-header'}><h1>Rentals <Button icon={<FilterOutlined/>}
                                                                           onClick={() => setFiltersVisible(true)}/>
@@ -124,7 +125,7 @@ export function RentalsListComponent({ googleMapInstances, filterValues, setFilt
             closable={true}
             onClose={() => setFiltersVisible(false)}
             visible={filtersVisible}
-            width={500}
+            width={window.innerWidth > 500 ? 500 : window.innerWidth}
         >
             <RentalsFilterComponent closeDrawer={() => setFiltersVisible(false)}
                                     filterValues={filterValues}
