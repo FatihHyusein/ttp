@@ -25,7 +25,9 @@ const IconText = ({ icon, text, title }) => (
 export function RentalsListComponent({ googleMapInstances, filterValues, setFilterValues }) {
     const [rentalModalVisible, setRentalModalVisible] = React.useState(false);
     const [filtersVisible, setFiltersVisible] = React.useState(false);
-    const [currentRental, setCurrentRental] = React.useState({});
+    const [currentRental, setCurrentRental] = React.useState({
+        isAvailable: true
+    });
     const { rentals, setRentals } = React.useContext(RentalsContext);
     const { myProfile } = React.useContext(MyProfileContext);
 
@@ -80,7 +82,9 @@ export function RentalsListComponent({ googleMapInstances, filterValues, setFilt
                     null
                     : <Button type={'primary'} icon={<AppstoreAddOutlined/>}
                               onClick={() => {
-                                  setCurrentRental({});
+                                  setCurrentRental({
+                                      isAvailable: true
+                                  });
                                   setRentalModalVisible(true);
                               }
                               }/>}

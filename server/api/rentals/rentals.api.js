@@ -1,7 +1,7 @@
 const db = require('../../db');
 const ObjectId = require('mongodb').ObjectID;
 
-async function getAllRentals() {
+async function getAllRentals(user) {
     return await db.getDB().collection('rentals').find().toArray();
 }
 
@@ -17,7 +17,7 @@ module.exports = {
     },
 
     create: async (req, res, next) => {
-        const { name, description, floorAreaSize, pricePerMonth, roomsCount, coordinates, associatedRealtorId } = req.body;
+        const { name, description, floorAreaSize, pricePerMonth, roomsCount, coordinates, associatedRealtorId, isAvailable } = req.body;
 
         const dateAdded = new Date();
 
@@ -30,6 +30,7 @@ module.exports = {
             coordinates,
             associatedRealtorId,
             dateAdded,
+            isAvailable
         });
 
         if (insertResult.insertedCount === 1) {
