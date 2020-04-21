@@ -4,9 +4,11 @@ import { RentalsContext } from '../../../../contexts/rentals.context';
 import GoogleMapReact from 'google-map-react';
 import { RentalMapMarkerComponent } from './rental-map-marker/rental-map-marker.component';
 import { rentalUtils } from '../rental.utils';
+import { RentalPopupComponent } from './rental-popup/rental-popup.component';
 
 export function RentalsMapComponent({ googleMapInstances, setGoogleMapInstances, filterValues }) {
     const { rentals } = React.useContext(RentalsContext);
+    const [selectedRental, setSelectedRental] = React.useState();
 
     React.useEffect(() => {
         if (googleMapInstances) {
@@ -33,11 +35,12 @@ export function RentalsMapComponent({ googleMapInstances, setGoogleMapInstances,
                 lng: 23.31
             }}
             zoom={5}
+            onClick={() => {
+                setSelectedRental(null)
+            }}
             onChildClick={(childKey) => {
-                const selectedRental = rentals.find(({ _id }) => _id === childKey);
-                if (selectedRental) {
-                    console.log(selectedRental);
-                }
+                const clickedRental = rentals.find(({ _id }) => _id === childKey);
+                setSelectedRental(clickedRental);
             }}
             onGoogleApiLoaded={({ map, maps }) => {
                 setGoogleMapInstances({
@@ -53,6 +56,12 @@ export function RentalsMapComponent({ googleMapInstances, setGoogleMapInstances,
                     text='My Marker'
                 />;
             })}
+            {
+                selectedRental ? <RentalPopupComponent
+                    rental={selectedRental}
+                    lat={selectedRental.coordinates.lat}
+                    lng={selectedRental.coordinates.lng}/> : null
+            }
         </GoogleMapReact>
     </div>;
 }
