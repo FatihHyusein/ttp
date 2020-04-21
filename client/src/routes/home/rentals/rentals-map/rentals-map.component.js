@@ -36,7 +36,7 @@ export function RentalsMapComponent({ googleMapInstances, setGoogleMapInstances,
             }}
             zoom={5}
             onClick={() => {
-                setSelectedRental(null)
+                setSelectedRental(null);
             }}
             onChildClick={(childKey) => {
                 const clickedRental = rentals.find(({ _id }) => _id === childKey);
@@ -50,6 +50,7 @@ export function RentalsMapComponent({ googleMapInstances, setGoogleMapInstances,
         >
             {rentalUtils.filterData(rentals, filterValues).map(rental => {
                 return <RentalMapMarkerComponent
+                    rental={rental}
                     key={rental._id}
                     lat={rental.coordinates.lat}
                     lng={rental.coordinates.lng}
