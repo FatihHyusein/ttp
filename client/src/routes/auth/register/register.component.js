@@ -2,6 +2,7 @@ import React from 'react';
 import './register.component.scss';
 import { Button, Card, Form, Input, message, Radio } from 'antd';
 import { ajax } from '../../../core/ajax-requests.util';
+import { userRoles } from '../../../core/roles.enum';
 
 const layout = {
     labelCol: { span: 8 },
@@ -77,9 +78,9 @@ export function RegisterComponent() {
                     rules={[{ required: true, message: 'Please select your role!' }]}
                 >
                     <Radio.Group buttonStyle='solid'>
-                        <Radio.Button value='customer'>Client</Radio.Button>
-                        <Radio.Button value='realtor'>Realtor</Radio.Button>
-                        <Radio.Button value='admin'>Admin</Radio.Button>
+                        <Radio.Button value={userRoles.customer}>Client</Radio.Button>
+                        <Radio.Button value={userRoles.realtor}>Realtor</Radio.Button>
+                        <Radio.Button value={userRoles.admin}>Admin</Radio.Button>
                     </Radio.Group>
                 </Form.Item>
 
