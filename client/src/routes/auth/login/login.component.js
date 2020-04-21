@@ -14,7 +14,7 @@ const tailLayout = {
 
 export function LoginComponent() {
     return <div className={'login-form'}>
-        <Card title='Login' bordered={false} style={{ width: 450 }}>
+        <Card title='Login' bordered={false}>
             <Form
                 onFinish={(values) => {
                     ajax.post({

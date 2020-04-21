@@ -8,3 +8,19 @@
   display: flex;
   justify-content: space-between;
 }
+
+.rentals-list {
+  .ant-list-item-action {
+    @media screen and (max-width: 450px) {
+      & > li {
+        display: block;
+        margin-bottom: 5px;
+
+        & > .ant-list-item-action-split {
+          display: none;
+        }
+      }
+    }
+
+  }
+}

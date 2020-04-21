@@ -1,5 +1,15 @@
-.users-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
+.users-component {
+  .users-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+
+  .ant-list-item-action {
+
+    @media screen and (max-width: 450px) {
+      width: 100%;
+      text-align: right;
+    }
+  }
 }

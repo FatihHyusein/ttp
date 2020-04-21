@@ -25,7 +25,7 @@ export function UsersComponent() {
         });
     }, [setUsers]);
 
-    return <div>
+    return <div className={'users-component'}>
         <List
             itemLayout='horizontal'
             header={<div className={'users-header'}><h1>User List</h1> <Button type={'primary'} icon={<UserAddOutlined/>}

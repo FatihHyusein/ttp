@@ -16,8 +16,8 @@ const tailLayout = {
 export function RegisterComponent() {
     const [form] = Form.useForm();
 
-    return <div>
-        <Card title='Register' bordered={false} style={{ width: 450 }}>
+    return <div className={'register-form'}>
+        <Card title='Register' bordered={false}>
             <Form
                 form={form}
                 onFinish={(values) => {
