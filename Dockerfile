@@ -1,11 +1,13 @@
-FROM node:10-alpine as clientBuilder
+FROM node:12.16.2-alpine3.9 as clientBuilder
 WORKDIR /app
 COPY ./client .
 
+RUN ls
+RUN yarn -v
 RUN yarn install
 RUN npm run build
 
-FROM keymetrics/pm2:10-slim
+FROM node:12.16.2-alpine3.9
 WORKDIR /usr/src/app
 
 RUN node -v
