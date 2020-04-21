@@ -2,7 +2,7 @@ FROM node:10-alpine as clientBuilder
 WORKDIR /app
 COPY ./client .
 
-RUN npm install
+RUN yarn install
 RUN npm run build
 
 FROM keymetrics/pm2:10-slim

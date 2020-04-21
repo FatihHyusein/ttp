@@ -1,0 +1,10 @@
+image: docker:latest
+build_job:
+  stage: build
+  script:
+    - ls
+    - echo "starting job..."
+    - docker build -t "latest" .
+    - echo job finished
+  only:
+    - master
