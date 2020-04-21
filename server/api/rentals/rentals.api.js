@@ -2,13 +2,17 @@ const db = require('../../db');
 const ObjectId = require('mongodb').ObjectID;
 
 async function getAllRentals(user) {
-    return await db.getDB().collection('rentals').find().toArray();
+    const findQuery = user.role === 'customer'
+        ? { isAvailable: true }
+        : {};
+
+    return await db.getDB().collection('rentals').find(findQuery).toArray();
 }
 
 module.exports = {
     getAll: async (req, res, next) => {
         res.locals = {
-            data: await getAllRentals(),
+            data: await getAllRentals(req.auth.user),
             toastMessages: [],
             confirmMessage: '',
         };
@@ -35,7 +39,7 @@ module.exports = {
 
         if (insertResult.insertedCount === 1) {
             res.locals = {
-                data: await getAllRentals(),
+                data: await getAllRentals(req.auth.user),
                 toastMessages: [],
                 confirmMessage: '',
             };
@@ -67,7 +71,7 @@ module.exports = {
 
         if (updateResult.result.ok) {
             res.locals = {
-                data: await getAllRentals(),
+                data: await getAllRentals(req.auth.user),
                 toastMessages: [],
                 confirmMessage: '',
             };
@@ -84,7 +88,7 @@ module.exports = {
         await db.getDB().collection('rentals').deleteOne({ '_id': new ObjectId(rentalId) });
 
         res.locals = {
-            data: await getAllRentals(),
+            data: await getAllRentals(req.auth.user),
             toastMessages: [],
             confirmMessage: '',
         };
