@@ -1,3 +1,4 @@
+const path = require('path');
 const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -19,6 +20,18 @@ app.use(compression({
 }));
 app.use(cors());
 app.use(bodyParser.json());
+
+app.get('/favicon.ico', (req, res) => {
+    res.sendFile(path.join(__dirname + '/static/build/favicon.ico'));
+});
+app.use(express.static(path.join(__dirname, 'static/build')));
+app.get('*', (req, res, next) => {
+    if (req.originalUrl.indexOf('/api') === -1) {
+        res.sendFile(path.join(__dirname + '/static/build/index.html'));
+    } else {
+        next();
+    }
+});
 
 app.use('/api/auth', require('./auth/auth.api'));
 
