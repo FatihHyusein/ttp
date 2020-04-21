@@ -95,7 +95,7 @@ function handleSuccess(responseJson) {
 function handleFailure(err) {
     if (err.statusText === 'Unauthorized') {
         localStorage.removeItem('token');
-        window.location.reload();
+        setAuthToken(localStorage.token);
     } else {
         if (err.token) {
             localStorage.token = err.token;
