@@ -43,7 +43,7 @@ export function UserModalComponent({ visible, closeModal, currentUser }) {
                         .then(successHandle)
                         .catch(error => {
                             console.log(error);
-                            message.error('Could not update user!');
+                            message.error(typeof error.message === 'string' ? error.message : 'Could not update user!');
                         }) :
 
                     ajax.post({
@@ -53,7 +53,7 @@ export function UserModalComponent({ visible, closeModal, currentUser }) {
                         .then(successHandle)
                         .catch(error => {
                             console.log(error);
-                            message.error('Could not create user!');
+                            message.error(typeof error.message === 'string' ? error.message : 'Could not create user!');
                         });
             }}
             onFinishFailed={errorInfo => {

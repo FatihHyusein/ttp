@@ -1,4 +1,5 @@
 const db = require('../../db');
+const { MONGO_DUPLICATE_ERROR_CODE } = require('../../costants');
 const ObjectId = require('mongodb').ObjectID;
 const { encript } = require('../../auth/pass-encription.util');
 
@@ -31,20 +32,26 @@ module.exports = {
     create: async (req, res, next) => {
         const { username, password, role } = req.body;
 
-        const insertResult = await db.getDB().collection('users').insertOne({
-            username,
-            password: encript(password),
-            role
-        });
+        try {
+            const insertResult = await db.getDB().collection('users').insertOne({
+                username,
+                password: encript(password),
+                role
+            });
 
-        if (insertResult.insertedCount === 1) {
-            res.locals = {
-                data: await getAllUsers(),
-                toastMessages: [],
-                confirmMessage: '',
-            };
+            if (insertResult.insertedCount === 1) {
+                res.locals = {
+                    data: await getAllUsers(),
+                    toastMessages: [],
+                    confirmMessage: '',
+                };
 
-            return next();
+                return next();
+            }
+        } catch (e) {
+            if (e.code === MONGO_DUPLICATE_ERROR_CODE) {
+                return next({ statusCode: 400, message: `Username is taken` });
+            }
         }
 
         next({ statusCode: 400, message: `Could not create user!` });
@@ -53,30 +60,36 @@ module.exports = {
     update: async (req, res, next) => {
         const { userId } = req.params;
 
-        const updateResult = await db.getDB().collection('users').updateOne(
-            { _id: new ObjectId(userId) },
-            {
-                $set:
-                    Object.entries(req.body).reduce((acc, [key, value]) => {
-                        if (typeof value !== 'undefined') {
-                            return {
-                                ...acc,
-                                [key]: key === 'password' ? encript(value) : value
-                            };
-                        }
-                        return acc;
-                    }, {})
+        try {
+            const updateResult = await db.getDB().collection('users').updateOne(
+                { _id: new ObjectId(userId) },
+                {
+                    $set:
+                        Object.entries(req.body).reduce((acc, [key, value]) => {
+                            if (typeof value !== 'undefined') {
+                                return {
+                                    ...acc,
+                                    [key]: key === 'password' ? encript(value) : value
+                                };
+                            }
+                            return acc;
+                        }, {})
+                }
+            );
+
+            if (updateResult.result.ok) {
+                res.locals = {
+                    data: await getAllUsers(),
+                    toastMessages: [],
+                    confirmMessage: '',
+                };
+
+                return next();
             }
-        );
-
-        if (updateResult.result.ok) {
-            res.locals = {
-                data: await getAllUsers(),
-                toastMessages: [],
-                confirmMessage: '',
-            };
-
-            return next();
+        } catch (e) {
+            if (e.code === MONGO_DUPLICATE_ERROR_CODE) {
+                return next({ statusCode: 400, message: `Username is taken` });
+            }
         }
 
         next({ statusCode: 400, message: `Could not update user!` });

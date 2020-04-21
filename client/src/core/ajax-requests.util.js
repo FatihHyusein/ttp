@@ -92,7 +92,9 @@ function handleSuccess(responseJson) {
     return responseJson;
 }
 
-function handleFailure(err) {
+async function handleFailure(err) {
+    const errorObject = await err.messagePromise;
+
     if (err.statusText === 'Unauthorized') {
         localStorage.removeItem('token');
         setAuthToken(localStorage.token);
@@ -107,6 +109,6 @@ function handleFailure(err) {
 
     return Promise.reject({
         statusText: err.statusText,
-        messagePromise: err.error || err.e || 'Something went wrong'
+        message: errorObject.error || err.error || err.e || 'Something went wrong'
     });
 }
