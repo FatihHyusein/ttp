@@ -60,12 +60,12 @@ export function RegisterComponent() {
                     rules={[
                         { required: true, message: 'Please input your password!' },
                         {
-                            validator: (rule, value, callback) => {
+                            validator: (rule, value) => {
                                 if (value && form.getFieldValue('password') !== value) {
-                                    callback('Confirm Password does not match!');
-                                } else {
-                                    callback();
+                                    return Promise.reject('Confirm Password does not match!');
                                 }
+
+                                return Promise.resolve();
                             }
                         }
                     ]}

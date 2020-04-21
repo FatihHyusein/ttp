@@ -9,6 +9,11 @@ import { RentalsListComponent } from './rentals-list/rentals-list.component';
 export function RentalsComponent() {
     const { setRentals } = React.useContext(RentalsContext);
     const [googleMapInstances, setGoogleMapInstances] = React.useState(null);
+    const [filterValues, setFilterValues] = React.useState({
+        floorAreaSize: { min: null, max: null },
+        pricePerMonth: { min: null, max: null },
+        roomsCount: { min: null, max: null },
+    });
 
     React.useEffect(() => {
         ajax.get({ url: 'rentals' }).then(responseJson => {
@@ -18,10 +23,14 @@ export function RentalsComponent() {
 
     return <div className={'rentals-component'}>
         <div>
-            <RentalsListComponent googleMapInstances={googleMapInstances}/>
+            <RentalsListComponent googleMapInstances={googleMapInstances}
+                                  filterValues={filterValues}
+                                  setFilterValues={setFilterValues}/>
         </div>
         <div>
-            <RentalsMapComponent googleMapInstances={googleMapInstances} setGoogleMapInstances={setGoogleMapInstances}/>
+            <RentalsMapComponent googleMapInstances={googleMapInstances}
+                                 setGoogleMapInstances={setGoogleMapInstances}
+                                 filterValues={filterValues}/>
         </div>
     </div>;
 }
