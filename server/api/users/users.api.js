@@ -2,9 +2,10 @@ const db = require('../../db');
 const { MONGO_DUPLICATE_ERROR_CODE } = require('../../costants');
 const ObjectId = require('mongodb').ObjectID;
 const { encript } = require('../../auth/pass-encription.util');
+const { USER_ROLES } = require('../../costants');
 
 async function getAllUsers(role) {
-    const queryObject = role ? { $eq: role } : { $ne: 'admin' };
+    const queryObject = role ? { $eq: role } : { $ne: USER_ROLES.ADMIN };
     return await db.getDB().collection('users').find({ role: queryObject }).project({ password: 0, }).toArray();
 }
 
@@ -21,7 +22,7 @@ module.exports = {
 
     getRealtorsOnly: async (req, res, next) => {
         res.locals = {
-            data: await getAllUsers('realtor'),
+            data: await getAllUsers(USER_ROLES.REALTOR),
             toastMessages: [],
             confirmMessage: '',
         };

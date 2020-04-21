@@ -2,7 +2,6 @@ import React from 'react';
 import './rentals-list.component.scss';
 import { Avatar, Button, Drawer, List, message, Popconfirm, Switch } from 'antd';
 import AppstoreAddOutlined from '@ant-design/icons/lib/icons/AppstoreAddOutlined';
-import { AppstoreOutlined, CalendarOutlined, DollarOutlined, ExpandAltOutlined } from '@ant-design/icons';
 import EditOutlined from '@ant-design/icons/lib/icons/EditOutlined';
 import { ajax } from '../../../../core/ajax-requests.util';
 import DeleteOutlined from '@ant-design/icons/lib/icons/DeleteOutlined';

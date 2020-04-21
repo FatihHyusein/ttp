@@ -1,8 +1,9 @@
 const db = require('../../db');
 const ObjectId = require('mongodb').ObjectID;
+const { USER_ROLES } = require('../../costants');
 
 async function getAllRentals(user) {
-    const findQuery = user.role === 'customer'
+    const findQuery = user.role === USER_ROLES.CUSTOMER
         ? { isAvailable: true }
         : {};
 
