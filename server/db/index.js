@@ -17,7 +17,6 @@ module.exports = {
         connection = await client.connect();
         db = client.db('rentals-manager');
 
-
         return connection;
     }
 };

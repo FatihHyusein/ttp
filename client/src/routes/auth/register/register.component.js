@@ -26,8 +26,7 @@ export function RegisterComponent() {
                         postData: values
                     }).then(responseJson => {
                     }).catch(error => {
-                        console.log(error);
-                        message.error('Could not register!');
+                        message.error(typeof error.message === 'string' ? error.message : 'Could not register!');
                     });
                 }}
                 onFinishFailed={errorInfo => {

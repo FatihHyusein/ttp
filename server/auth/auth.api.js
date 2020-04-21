@@ -1,5 +1,6 @@
 const db = require('../db');
 const express = require('express');
+const { MONGO_DUPLICATE_ERROR_CODE } = require('../costants');
 const { encript, getJwtSign } = require('./pass-encription.util');
 
 
@@ -75,8 +76,9 @@ api.post('/register', async (req, res, next) => {
         next({ statusCode: 400, message: 'Could not register' });
     } catch (e) {
         console.error(e);
-        if (e.constraint === 'users_email_key' || e.constraint === 'users_pkey') {
-            next({ statusCode: 400, message: `${email} already exists` });
+        if (e.code === MONGO_DUPLICATE_ERROR_CODE) {
+            next({ statusCode: 400, message: `Username is taken` });
+
         } else {
             next({ statusCode: 400, message: 'Could not register' });
         }

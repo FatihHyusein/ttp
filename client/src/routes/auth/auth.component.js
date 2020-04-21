@@ -6,7 +6,7 @@ import { Tabs } from 'antd';
 
 export function AuthComponent() {
     return <div className={'auth-component'}>
-        <Tabs tabPosition={'bottom'} defaultActiveKey={'register'}>
+        <Tabs tabPosition={'bottom'} defaultActiveKey={'1'}>
             <Tabs.TabPane tab='Login' key='1'>
                 <LoginComponent/>
             </Tabs.TabPane>
