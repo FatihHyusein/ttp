@@ -1,0 +1,31 @@
+.rental-map-marker-component {
+  $availableColor: green;
+  $rentedColor: orange;
+
+  cursor: pointer;
+  font-size: 32px;
+
+  &.available {
+    svg {
+      fill: $availableColor;
+    }
+
+    &:hover {
+      svg {
+        fill: darken($availableColor, 7%);
+      }
+    }
+  }
+
+  &.rented {
+    svg {
+      fill: $rentedColor;
+    }
+
+    &:hover {
+      svg {
+        fill: darken($rentedColor, 7%);
+      }
+    }
+  }
+}
