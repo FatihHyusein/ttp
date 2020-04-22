@@ -1,0 +1,627 @@
+{
+  "version": 1,
+  "collections": [
+    {
+      "id": "13c75d27-f6bc-43a0-9d35-e10a06dc46e9",
+      "name": "Users",
+      "description": "",
+      "auth": null,
+      "events": null,
+      "variables": [],
+      "order": [
+        "5aa4e8b9-a595-4c1c-99ee-21bd0c2c4ada",
+        "bd22fb79-65b4-486e-8a10-bbbe49d61ede",
+        "889955a7-069b-41a1-ac87-3794ebf66c4e",
+        "d7902adb-eaf1-4274-8eef-b4b8e7e7aadf",
+        "7b0a72f8-2a46-46bf-b8a0-171c10a0926d"
+      ],
+      "folders_order": [],
+      "protocolProfileBehavior": {},
+      "folders": [],
+      "requests": [
+        {
+          "id": "5aa4e8b9-a595-4c1c-99ee-21bd0c2c4ada",
+          "name": "Get All",
+          "url": "{{base_url}}/api/users",
+          "description": "",
+          "data": null,
+          "dataOptions": null,
+          "dataMode": null,
+          "headerData": [
+            {
+              "key": "Authorization",
+              "value": "{{token}}",
+              "description": "",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text",
+              "enabled": true
+            }
+          ],
+          "method": "GET",
+          "pathVariableData": [],
+          "queryParams": [],
+          "auth": {
+            "type": "noauth",
+            "noauth": []
+          },
+          "events": [],
+          "folder": null,
+          "currentHelper": null,
+          "helperAttributes": null,
+          "collectionId": "13c75d27-f6bc-43a0-9d35-e10a06dc46e9",
+          "headers": "Authorization: {{token}}\nContent-Type: application/json\n",
+          "pathVariables": {}
+        },
+        {
+          "id": "7b0a72f8-2a46-46bf-b8a0-171c10a0926d",
+          "name": "Delete",
+          "url": "{{base_url}}/api/users/5ea0147471ec4d72a86f6cfb",
+          "description": "",
+          "data": [],
+          "dataOptions": null,
+          "dataMode": "raw",
+          "headerData": [
+            {
+              "description": "",
+              "enabled": true,
+              "key": "Authorization",
+              "type": "text",
+              "value": "{{token}}"
+            },
+            {
+              "description": "",
+              "enabled": true,
+              "key": "Content-Type",
+              "type": "text",
+              "value": "application/json"
+            }
+          ],
+          "method": "DELETE",
+          "pathVariableData": [],
+          "queryParams": [],
+          "auth": {
+            "noauth": [],
+            "type": "noauth"
+          },
+          "events": [],
+          "folder": null,
+          "currentHelper": null,
+          "helperAttributes": null,
+          "collectionId": "13c75d27-f6bc-43a0-9d35-e10a06dc46e9",
+          "rawModeData": "",
+          "headers": "Authorization: {{token}}\nContent-Type: application/json\n",
+          "pathVariables": {}
+        },
+        {
+          "id": "889955a7-069b-41a1-ac87-3794ebf66c4e",
+          "name": "Create",
+          "url": "{{base_url}}/api/users",
+          "description": "",
+          "data": [],
+          "dataOptions": null,
+          "dataMode": "raw",
+          "headerData": [
+            {
+              "description": "",
+              "enabled": true,
+              "key": "Authorization",
+              "type": "text",
+              "value": "{{token}}"
+            },
+            {
+              "description": "",
+              "enabled": true,
+              "key": "Content-Type",
+              "type": "text",
+              "value": "application/json"
+            }
+          ],
+          "method": "POST",
+          "pathVariableData": [],
+          "queryParams": [],
+          "auth": {
+            "noauth": [],
+            "type": "noauth"
+          },
+          "events": [],
+          "folder": null,
+          "currentHelper": null,
+          "helperAttributes": null,
+          "collectionId": "13c75d27-f6bc-43a0-9d35-e10a06dc46e9",
+          "rawModeData": "{\n\t\"username\":\"user12\",\n\t\"password\":\"user12\",\n\t\"role\":\"customer\"\n}",
+          "headers": "Authorization: {{token}}\nContent-Type: application/json\n",
+          "pathVariables": {}
+        },
+        {
+          "id": "bd22fb79-65b4-486e-8a10-bbbe49d61ede",
+          "name": "Get Realtors",
+          "url": "{{base_url}}/api/users/realtor",
+          "description": "",
+          "data": null,
+          "dataOptions": null,
+          "dataMode": null,
+          "headerData": [
+            {
+              "description": "",
+              "enabled": true,
+              "key": "Authorization",
+              "type": "text",
+              "value": "{{token}}"
+            },
+            {
+              "description": "",
+              "enabled": true,
+              "key": "Content-Type",
+              "type": "text",
+              "value": "application/json"
+            }
+          ],
+          "method": "GET",
+          "pathVariableData": [],
+          "queryParams": [],
+          "auth": {
+            "noauth": [],
+            "type": "noauth"
+          },
+          "events": [],
+          "folder": null,
+          "currentHelper": null,
+          "helperAttributes": null,
+          "collectionId": "13c75d27-f6bc-43a0-9d35-e10a06dc46e9",
+          "headers": "Authorization: {{token}}\nContent-Type: application/json\n",
+          "pathVariables": {}
+        },
+        {
+          "id": "d7902adb-eaf1-4274-8eef-b4b8e7e7aadf",
+          "name": "Update",
+          "url": "{{base_url}}/api/users/5ea0136571ec4d72a86f6cf5",
+          "description": "",
+          "data": [],
+          "dataOptions": null,
+          "dataMode": "raw",
+          "headerData": [
+            {
+              "description": "",
+              "enabled": true,
+              "key": "Authorization",
+              "type": "text",
+              "value": "{{token}}"
+            },
+            {
+              "description": "",
+              "enabled": true,
+              "key": "Content-Type",
+              "type": "text",
+              "value": "application/json"
+            }
+          ],
+          "method": "PUT",
+          "pathVariableData": [],
+          "queryParams": [],
+          "auth": {
+            "noauth": [],
+            "type": "noauth"
+          },
+          "events": [],
+          "folder": null,
+          "currentHelper": null,
+          "helperAttributes": null,
+          "collectionId": "13c75d27-f6bc-43a0-9d35-e10a06dc46e9",
+          "rawModeData": "{\n\t\"username\":\"user1\",\n\t\"role\":\"admin\"\n}",
+          "headers": "Authorization: {{token}}\nContent-Type: application/json\n",
+          "pathVariables": {}
+        }
+      ]
+    },
+    {
+      "id": "ac367d1b-2875-43b3-86ff-d206c00f718a",
+      "name": "Rentals",
+      "description": "",
+      "auth": null,
+      "events": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "ab1efa28-2e26-4524-a3b2-70eea407167a",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "3482b5a2-966e-46bf-9423-f9e02ba55799",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ],
+      "variables": [],
+      "order": [
+        "d0b642b8-98ae-4cb0-a786-12368f70de35",
+        "4edfa6c8-de76-47a9-98a4-b0c20b2af7f7",
+        "e4356999-ff83-4653-a75b-ca3049f8edf5",
+        "67380209-f297-4317-9ffd-f67215b07af4",
+        "b5de155f-5d97-4180-9198-a2787033f205"
+      ],
+      "folders_order": [],
+      "protocolProfileBehavior": {},
+      "folders": [],
+      "requests": [
+        {
+          "id": "4edfa6c8-de76-47a9-98a4-b0c20b2af7f7",
+          "name": "Create",
+          "url": "{{base_url}}/api/rentals",
+          "description": "",
+          "data": [],
+          "dataOptions": null,
+          "dataMode": "raw",
+          "headerData": [
+            {
+              "description": "",
+              "enabled": true,
+              "key": "Authorization",
+              "type": "text",
+              "value": "{{token}}"
+            },
+            {
+              "description": "",
+              "enabled": true,
+              "key": "Content-Type",
+              "type": "text",
+              "value": "application/json"
+            }
+          ],
+          "method": "POST",
+          "pathVariableData": [],
+          "queryParams": [],
+          "auth": {
+            "noauth": [],
+            "type": "noauth"
+          },
+          "events": [],
+          "folder": null,
+          "currentHelper": null,
+          "helperAttributes": null,
+          "collectionId": "ac367d1b-2875-43b3-86ff-d206c00f718a",
+          "rawModeData": "{\n\t\"name\":\"Test Fla22t\",\n\t\"description\":\"This is test flat description\",\n\t\"floorAreaSize\":50,\n\t\"pricePerMonth\":500,\n\t\"roomsCount\":2,\n\t\"coordinates\":{\n\t\t\"lat\":42.6394075,\n\t\t\"lng\":23.3864952\n\t\t\n\t},\n\t\"associatedRealtorId\":\"5e9f4349928da30f4495bb93\",\n\t\"isAvailable\":true\n}",
+          "headers": "Authorization: {{token}}\nContent-Type: application/json\n",
+          "pathVariables": {}
+        },
+        {
+          "id": "67380209-f297-4317-9ffd-f67215b07af4",
+          "name": "Change Availability",
+          "url": "{{base_url}}/api/rentals/5ea0153d71ec4d72a86f6cfd",
+          "description": "",
+          "data": [],
+          "dataOptions": null,
+          "dataMode": "raw",
+          "headerData": [
+            {
+              "description": "",
+              "enabled": true,
+              "key": "Authorization",
+              "type": "text",
+              "value": "{{token}}"
+            },
+            {
+              "description": "",
+              "enabled": true,
+              "key": "Content-Type",
+              "type": "text",
+              "value": "application/json"
+            }
+          ],
+          "method": "PUT",
+          "pathVariableData": [],
+          "queryParams": [],
+          "auth": {
+            "noauth": [],
+            "type": "noauth"
+          },
+          "events": [],
+          "folder": null,
+          "currentHelper": null,
+          "helperAttributes": null,
+          "collectionId": "ac367d1b-2875-43b3-86ff-d206c00f718a",
+          "rawModeData": "{\n\t\"isAvailable\":false\n}",
+          "headers": "Authorization: {{token}}\nContent-Type: application/json\n",
+          "pathVariables": {}
+        },
+        {
+          "id": "b5de155f-5d97-4180-9198-a2787033f205",
+          "name": "Delete",
+          "url": "{{base_url}}/api/rentals/5e9f4ed9928da30f4495bb94",
+          "description": "",
+          "data": [],
+          "dataOptions": null,
+          "dataMode": "raw",
+          "headerData": [
+            {
+              "description": "",
+              "enabled": true,
+              "key": "Authorization",
+              "type": "text",
+              "value": "{{token}}"
+            },
+            {
+              "description": "",
+              "enabled": true,
+              "key": "Content-Type",
+              "type": "text",
+              "value": "application/json"
+            }
+          ],
+          "method": "DELETE",
+          "pathVariableData": [],
+          "queryParams": [],
+          "auth": {
+            "noauth": [],
+            "type": "noauth"
+          },
+          "events": [],
+          "folder": null,
+          "currentHelper": null,
+          "helperAttributes": null,
+          "collectionId": "ac367d1b-2875-43b3-86ff-d206c00f718a",
+          "rawModeData": "",
+          "headers": "Authorization: {{token}}\nContent-Type: application/json\n",
+          "pathVariables": {}
+        },
+        {
+          "id": "d0b642b8-98ae-4cb0-a786-12368f70de35",
+          "name": "Get All",
+          "url": "{{base_url}}/api/rentals",
+          "description": "",
+          "data": null,
+          "dataOptions": null,
+          "dataMode": null,
+          "headerData": [
+            {
+              "key": "Authorization",
+              "value": "{{token}}",
+              "description": "",
+              "type": "text",
+              "enabled": true
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text",
+              "enabled": true
+            }
+          ],
+          "method": "GET",
+          "pathVariableData": [],
+          "queryParams": [],
+          "auth": {
+            "type": "noauth",
+            "noauth": []
+          },
+          "events": [],
+          "folder": null,
+          "currentHelper": null,
+          "helperAttributes": null,
+          "collectionId": "ac367d1b-2875-43b3-86ff-d206c00f718a",
+          "headers": "Authorization: {{token}}\nContent-Type: application/json\n",
+          "pathVariables": {}
+        },
+        {
+          "id": "e4356999-ff83-4653-a75b-ca3049f8edf5",
+          "name": "Update",
+          "url": "{{base_url}}/api/rentals/5ea0153d71ec4d72a86f6cfd",
+          "description": "",
+          "data": [],
+          "dataOptions": null,
+          "dataMode": "raw",
+          "headerData": [
+            {
+              "description": "",
+              "enabled": true,
+              "key": "Authorization",
+              "type": "text",
+              "value": "{{token}}"
+            },
+            {
+              "description": "",
+              "enabled": true,
+              "key": "Content-Type",
+              "type": "text",
+              "value": "application/json"
+            }
+          ],
+          "method": "PUT",
+          "pathVariableData": [],
+          "queryParams": [],
+          "auth": {
+            "noauth": [],
+            "type": "noauth"
+          },
+          "events": [],
+          "folder": null,
+          "currentHelper": null,
+          "helperAttributes": null,
+          "collectionId": "ac367d1b-2875-43b3-86ff-d206c00f718a",
+          "rawModeData": "{\n\t\"name\":\"Test\",\n\t\"description\":\"This is test flat description\",\n\t\"floorAreaSize\":50,\n\t\"pricePerMonth\":500,\n\t\"roomsCount\":22,\n\t\"associatedRealtorId\":\"5e9f4349928da30f4495bb93\",\n\t\"isAvailable\":true\n}",
+          "headers": "Authorization: {{token}}\nContent-Type: application/json\n",
+          "pathVariables": {}
+        }
+      ]
+    },
+    {
+      "id": "e8f4e985-6105-4df5-870f-0918c3bfcab3",
+      "name": "Auth",
+      "description": "",
+      "auth": null,
+      "events": null,
+      "variables": [],
+      "order": [
+        "e4b99daf-f96f-4813-81f3-f960ab4597ca",
+        "7a4d98f7-db3a-49a0-96da-d0d1a4dc0290",
+        "e4790734-31cb-4c9d-bf42-ad31c64d6a51"
+      ],
+      "folders_order": [],
+      "protocolProfileBehavior": {},
+      "folders": [],
+      "requests": [
+        {
+          "id": "7a4d98f7-db3a-49a0-96da-d0d1a4dc0290",
+          "name": "Login",
+          "url": "{{base_url}}/api/auth/login",
+          "description": "",
+          "data": [],
+          "dataOptions": null,
+          "dataMode": "raw",
+          "headerData": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text",
+              "enabled": true
+            }
+          ],
+          "method": "POST",
+          "pathVariableData": [],
+          "queryParams": [],
+          "auth": null,
+          "events": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "57e10955-bfaa-469b-90f0-601d4cc65843",
+                "exec": [
+                  "var data = pm.response.json();",
+                  "pm.globals.set(\"token\",  data.token);",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "folder": null,
+          "preRequestScript": null,
+          "tests": "var data = pm.response.json();\npm.globals.set(\"token\",  data.token);\n",
+          "currentHelper": null,
+          "helperAttributes": null,
+          "collectionId": "e8f4e985-6105-4df5-870f-0918c3bfcab3",
+          "rawModeData": "{\n\t\"username\":\"admin\",\n\t\"password\":\"admin\"\n}",
+          "headers": "Content-Type: application/json\n",
+          "pathVariables": {}
+        },
+        {
+          "id": "e4790734-31cb-4c9d-bf42-ad31c64d6a51",
+          "name": "Logout",
+          "url": "{{base_url}}/api/auth/logout",
+          "description": "",
+          "data": null,
+          "dataOptions": null,
+          "dataMode": null,
+          "headerData": [],
+          "method": "POST",
+          "pathVariableData": [],
+          "queryParams": [],
+          "auth": null,
+          "events": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "314685bd-6e5d-49cc-87eb-aa8d846452ae",
+                "exec": [
+                  "var data = pm.response.json();",
+                  "pm.globals.set(\"token\",  \"\");",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "folder": null,
+          "preRequestScript": null,
+          "tests": "var data = pm.response.json();\npm.globals.set(\"token\",  \"\");\n",
+          "currentHelper": null,
+          "helperAttributes": null,
+          "collectionId": "e8f4e985-6105-4df5-870f-0918c3bfcab3",
+          "headers": "",
+          "pathVariables": {}
+        },
+        {
+          "id": "e4b99daf-f96f-4813-81f3-f960ab4597ca",
+          "name": "Register",
+          "url": "{{base_url}}/api/auth/register",
+          "description": "",
+          "data": [],
+          "dataOptions": null,
+          "dataMode": "raw",
+          "headerData": [
+            {
+              "key": "Content-Type",
+              "name": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "method": "POST",
+          "pathVariableData": [],
+          "queryParams": [],
+          "auth": null,
+          "events": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "8c902f8d-59b0-43e6-b11c-8ee494256181",
+                "exec": [
+                  "var data = pm.response.json();",
+                  "pm.globals.set(\"token\",  data.token);",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "folder": null,
+          "preRequestScript": null,
+          "tests": "var data = pm.response.json();\npm.globals.set(\"token\",  data.token);\n",
+          "currentHelper": null,
+          "helperAttributes": null,
+          "collectionId": "e8f4e985-6105-4df5-870f-0918c3bfcab3",
+          "rawModeData": "{\n\t\"username\":\"fatih\",\n\t\"password\":\"fatih\",\n\t\"confirmPassword\":\"fatih\",\n\t\"role\":\"customer\"\n}",
+          "headers": "Content-Type: application/json\n",
+          "pathVariables": {}
+        }
+      ]
+    }
+  ],
+  "environments": [
+    {
+      "id": "0ec80da4-e394-44d8-8614-717f16e66e2a",
+      "name": "Property Mnager - globals",
+      "values": [
+        {
+          "key": "base_url",
+          "value": "http://localhost:4999",
+          "enabled": true
+        },
+        {
+          "key": "token",
+          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVlOWY0MzE5OTI4ZGEzMGY0NDk1YmI5MCIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNTg3NTUwNDYzLCJleHAiOjE1ODc2MzY4NjN9.vAkNH7Wr4tiXquWxt8Drpch2szMVWNOHxBnmw4iUXj4",
+          "enabled": true
+        }
+      ]
+    }
+  ],
+  "headerPresets": [],
+  "globals": []
+}
