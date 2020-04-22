@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://rentals-manager-admin:rentals-manager-admin1@ds263656.mlab.com:63656/rentals-manager';
+const url = process.env.DB_URL || 'mongodb://rentals-manager-admin:rentals-manager-admin1@ds263656.mlab.com:63656/rentals-manager';
 
 let connection = null;
 let db = null;

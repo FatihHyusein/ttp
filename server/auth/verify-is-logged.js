@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => {
         next();
     } else {
         try {
-            req.auth = jwt.verify(req.headers.authorization, process.env.login_key || 'shhhhh');
+            req.auth = jwt.verify(req.headers.authorization, process.env.LOGIN_KEY || 'shhhhh');
             const existingUser = await db.getDB().collection('users').findOne({
                 _id: new ObjectId(req.auth.user._id),
             });

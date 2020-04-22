@@ -11,7 +11,7 @@ module.exports = {
     getJwtSign(user) {
         return jwt.sign({
                 user
-            }, process.env.login_key || 'shhhhh',
+            }, process.env.LOGIN_KEY || 'shhhhh',
             { expiresIn: '24h' }
         );
     }
