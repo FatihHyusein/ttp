@@ -24,6 +24,10 @@ module.exports = {
     create: async (req, res, next) => {
         const { name, description, floorAreaSize, pricePerMonth, roomsCount, coordinates, associatedRealtorId, isAvailable } = req.body;
 
+        if (!name || !description || !floorAreaSize || !pricePerMonth || !roomsCount || !coordinates || !associatedRealtorId || !isAvailable) {
+            return next({ statusCode: 400, message: `All fields are required` });
+        }
+
         const dateAdded = new Date();
 
         const insertResult = await db.getDB().collection('rentals').insertOne({

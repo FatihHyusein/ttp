@@ -32,6 +32,9 @@ module.exports = {
 
     create: async (req, res, next) => {
         const { username, password, role } = req.body;
+        if (!username || !password || !role) {
+            return next({ statusCode: 400, message: `All fields are required` });
+        }
 
         try {
             const insertResult = await db.getDB().collection('users').insertOne({
