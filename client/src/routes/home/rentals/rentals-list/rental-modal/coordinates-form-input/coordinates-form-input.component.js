@@ -36,6 +36,14 @@ export function CoordinatesFormInputComponent({ googleMapInstances, form }) {
         }
     }, [selectedAddress, gmapsAddresses, form]);
 
+    React.useEffect(() => {
+        return () => {
+            if (geocoderTimeout) {
+                clearTimeout(geocoderTimeout);
+            }
+        };
+    }, []);
+
     return <React.Fragment>
         <Form.Item
             label='Address'>
@@ -59,7 +67,7 @@ export function CoordinatesFormInputComponent({ googleMapInstances, form }) {
                                 message.error('Geocode was not successful for the following reason: ' + status, 4);
                             }
                         });
-                    }, 250);
+                    }, 300);
                 }}
                 onChange={(value) => {
                     setSelectedAddress(value);
